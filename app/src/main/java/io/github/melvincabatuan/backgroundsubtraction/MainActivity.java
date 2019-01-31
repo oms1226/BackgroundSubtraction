@@ -2,6 +2,7 @@ package io.github.melvincabatuan.backgroundsubtraction;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.graphics.PixelFormat;
 import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
@@ -82,12 +83,44 @@ public class MainActivity extends Activity implements TextureView.SurfaceTexture
 
         if (mCamera != null){
             predict(imageA, data);
+/*            imageA = RotateBitmap(imageA, 180);
+            imViewA.setImageBitmap(imageA);*/
+            imageA = ChangeBitmapUpDown(imageA);
+            imViewA.setImageBitmap(imageA);
             imViewA.invalidate();
             mCamera.addCallbackBuffer(videoSource);
         }
     }
 
     public native void predict(Bitmap pTarget, byte[] pSource);
+
+    public Bitmap RotateBitmap(Bitmap source, float angle) {
+      Bitmap reVal = null;
+      Matrix matrix = new Matrix();
+      matrix.postRotate(angle);
+      reVal = Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
+      source.recycle();
+      return reVal;
+    }
+
+    public Bitmap ChangeBitmapUpDown(Bitmap source) {
+        Bitmap reVal = null;
+        Matrix matrix = new Matrix();
+        matrix.setScale(-1, 1);
+
+        reVal = Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, false);
+        source.recycle();
+        return reVal;
+    }
+
+    public Bitmap ChangeBitmapLeftRight(Bitmap source) {
+        Bitmap reVal = null;
+        Matrix matrix = new Matrix();
+        matrix.setScale(1, -1);
+        reVal = Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, false);
+        source.recycle();
+        return reVal;
+    }
 
     @Override
     public void onSurfaceTextureAvailable(SurfaceTexture surface, int width, int height) {

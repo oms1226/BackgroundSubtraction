@@ -22,11 +22,17 @@ using namespace cv;
 
 /* Global Variables */
 
-    Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorKNN().dynamicCast<BackgroundSubtractor>();
-    //Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorMOG2().dynamicCast<BackgroundSubtractor>();
-    //Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorCMG().dynamicCast<BackgroundSubtractor>();
-    //createBackgroundSubtractorKNN()
-    //Ptr<BackgroundSubtractor> bg_model = makePtr<BackgroundSubtractorMOG2()>();
+
+    //Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorMOG2(500, 16, true).dynamicCast<BackgroundSubtractor>();//default//not good
+    //Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorMOG2(500, 16, false).dynamicCast<BackgroundSubtractor>();//not good
+    //Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorMOG2(500, 32, true).dynamicCast<BackgroundSubtractor>();//bad
+    //Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorMOG2(500, 8, true).dynamicCast<BackgroundSubtractor>();//bad
+    //Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorMOG2(500, 64, true).dynamicCast<BackgroundSubtractor>();//very bad
+    //Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorMOG2(250, 16, true).dynamicCast<BackgroundSubtractor>();
+    //Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorMOG2(1000, 16, true).dynamicCast<BackgroundSubtractor>();
+
+    //Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorKNN(500, 400, true).dynamicCast<BackgroundSubtractor>();//not good
+    Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorKNN(500, 800, true).dynamicCast<BackgroundSubtractor>();//not good
 
     Mat *pfgimg = NULL;   // foreground image pointer
     Mat *pfgmask = NULL;  // foreground mask pointer
