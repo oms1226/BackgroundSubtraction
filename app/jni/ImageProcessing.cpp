@@ -3,9 +3,10 @@
 #include <android/bitmap.h>
 #include <stdlib.h>
 
-#include "opencv2/core.hpp"
-#include <opencv2/core/utility.hpp>
-#include "opencv2/imgproc.hpp"
+#include "opencv2/core/core.hpp"
+//#include <opencv2/core/utility.hpp>
+#include "opencv2/imgproc/imgproc.hpp"
+//#include "opencv2/bgsegm.hpp"
 #include "opencv2/video/background_segm.hpp"
 
 #define  LOG_TAG    "BackgroundSubtraction"
@@ -15,14 +16,18 @@
 
 using namespace std;
 using namespace cv;
+//using namespace cv2;
 
 
 
 /* Global Variables */
 
-    //Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorKNN().dynamicCast<BackgroundSubtractor>();
-    Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorMOG2().dynamicCast<BackgroundSubtractor>();
-    
+    Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorKNN().dynamicCast<BackgroundSubtractor>();
+    //Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorMOG2().dynamicCast<BackgroundSubtractor>();
+    //Ptr<BackgroundSubtractor> bg_model = createBackgroundSubtractorCMG().dynamicCast<BackgroundSubtractor>();
+    //createBackgroundSubtractorKNN()
+    //Ptr<BackgroundSubtractor> bg_model = makePtr<BackgroundSubtractorMOG2()>();
+
     Mat *pfgimg = NULL;   // foreground image pointer
     Mat *pfgmask = NULL;  // foreground mask pointer
     

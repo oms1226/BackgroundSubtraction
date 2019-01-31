@@ -2,11 +2,12 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 22
-    buildToolsVersion "23.0.0 rc1"
+    buildToolsVersion '28.0.3'
 
     defaultConfig {
         applicationId "io.github.melvincabatuan.backgroundsubtraction"
         minSdkVersion 15
+        //noinspection ExpiredTargetSdkVersion
         targetSdkVersion 22
         versionCode 1
         versionName "1.0"
